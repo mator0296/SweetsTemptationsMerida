@@ -31,5 +31,6 @@
     "socket.io-client": "^2.0.3"
   },
   "author": "Rojas Lobo Victor <rojasv907@gmail.com>",
-  "license": "ISC"
+  "license": "ISC",
+  "main": "server.js"
 }
