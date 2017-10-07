@@ -1,0 +1,60 @@
+extends ../layout.jade
+block contenido
+	div(class="big-top-space" id= "typeCakes" )
+			div(class="row ")
+				div(class="col s6 center remove-floatp")
+					article
+						a(href="/app/pedidos/new" id = "type1")
+							h1 Con crema
+							img(src="../stactic/pictures/tortaFomdant.jpg" class="remove-float animated fadeInLeft" whidth ="200" height = "300")
+				div(class="col s6 center remove-floatp")
+					article
+						a(href="/app/pedidos/new" id = "type2")
+							h1 de fondam
+							img(src="../stactic/pictures/tortaDulces.jpg" class= "animated fadeInRight" whidth ="200" height = "300")			
+			.row.center				
+				div(class= "row" id = "selectSize")
+					div(class="input-field col s2 center-block remove-floatp top-space")
+						select(class="form-control" id ="size" name="sabor")
+							option(value="" disabled selected)   Seleciona las unidades
+							option           4
+							option 	         6
+							option 	         9
+							option          12	
+						label(class= "sabor") unidades						
+				div(class= "row" id = "selectFlavorCake")
+					div(class="input-field col s2 center-block remove-floatp ")
+						select(class="form-control" id ="flavorCake" name="sabor")
+							option(value="" disabled selected)   Seleciona el Sabor del ponqué
+							option  Chocolate
+							option Chocolate con Oreo
+							option Chocolate con chispas de chocolate
+							option Vainilla
+							option Vainilla con oreo
+							option Vainilla con chispas de chocolate
+							option Red velvet
+							option Coco
+							option  Cafe
+							option Naraja
+							option limon
+						label(class= "sabor") Sabor del ponqué	
+
+				div(class= "row" id = "selectFlavorCream")
+					div(class="input-field col s2 center-block remove-floatp")
+
+						select(class="form-control" id ="flavorCream" name="sabor")
+							option(value="" disabled selected)   Seleciona el Sabor de Relleno
+							option  Chocolate
+							option  Cafe
+							option Vainilla
+							option Naraja
+							option Frosting de Queso crema
+							option Oreo
+							option Jalea de Parchita
+							option Jalea de Mora
+							option Arequipe
+						label(class= "sabor") Sabor del Relleno
+			div(class= "row")
+				div(class="alert alert-danger col-md-4 center-block remove-floatp" style='display:none;' id="Alert" role="alert")
+							h2 Selecione las unidades			
+	script(src="../stactic/javaScript/eventCupcakes.js")

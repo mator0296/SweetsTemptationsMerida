@@ -1,0 +1,45 @@
+.temptations .collection {
+  border: 1px solid #fff;
+}
+.temptations .collection .collection-item.avatar {
+  padding-left: 120px;
+}
+.temptations .collection .collection-item.avatar:not(.circle-clipper) .circle {
+  width: 100px;
+  height: 100px;
+  border-radius: 0;
+}
+.temptations .collection .asideAddCartModal {
+  width: 70%;
+  height: 1200px;
+  border: 10px solid subText;
+  max-height: 80%;
+  overflow: hidden;
+}
+.temptations .collection .asideAddCartModal .row {
+  background-color: #351327;
+  margin: 0;
+}
+.temptations .collection .asideAddCartModal img {
+  position: absolute;
+  width: 66.6666666667%;
+  height: 100%;
+  left: 0px;
+}
+.temptations .collection .asideAddCartModal .col.s4 {
+  color: #fff;
+  height: 1200px;
+}
+.temptations .collection .asideAddCartModal .col.s8 {
+  padding: 0;
+  height: 100%;
+}
+.temptations .collection .asideAddCartModal .input-field label {
+  color: #fff;
+}
+.temptations .collection .asideAddCartModal a {
+  color: White;
+}
+.temptations .collection .asideAddCartModal h1 {
+  text-align: center;
+}

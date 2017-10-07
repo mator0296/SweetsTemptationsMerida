@@ -1,0 +1,87 @@
+extends ../../layout.jade
+block contenido
+	.titlePag
+		.container
+			h1= prePedido.name
+			p Agragalo a tu carro
+	.container.big-top-space
+		.row
+			.col.s12.showPedido
+				.row
+					.col.s12.center
+						img(src= prePedido.refere.replace("Public","/stactic"))
+
+				.row		
+					.col.s12
+						.container
+							h1= prePedido.name
+							.divider
+							h6 Tamaño: #{prePedido.size}
+							h6= prePedido.content							
+							p #{(prePedido.candy ? " Con delisosos caramelos" : "")}
+							p #{(prePedido.torontos ? " Con delisosos torontos" : "")} 
+							p #{(prePedido.cri ? " Con delisosos chocolate cri cri" : "") }
+							p #{(prePedido.oreo ? " Con delisosas galletas oreos" : "") }
+							p #{(prePedido.Ntoys ? " Con esta cantidad de munecos: " + prePedido.Ntoys  : "")}
+							if(add)
+								.prices Precio de:#{Math.ceil(Number(prePedido.Prices.minPrices.price)*0.001)*1000} - #{Math.ceil(Number(prePedido.Prices.maxPrices.price)*0.001)*1000} Mil bsf
+								
+								for prices in prePedido.Prices.Price
+									.price(id = prices.flavorCake.replace(" ", "")  + prices.flavorCream.replace(" ", "")  style = "display:none;")  #{Math.ceil(Number(prices.price)*0.001)*1000} Bsf.
+								div(class= "row" id = "FlavorCake")
+									div(class="input-field col s12 center-block remove-floatp ")
+									form(id = "form" )
+										select( id ="flavorCake"  name="flavorCake"  data-error = ".errorTxt" + ( 9))
+											option(value="" disabled selected)   Seleciona el Sabor del ponqué
+											if(prePedido.type == "cakes")
+												option  Chocolate
+												option Vainilla
+												option Red Velvet
+												option(value="Vainilla") Coco
+												option(value="Vainilla")  Cafe
+												option(value="Vainilla") Naraja
+												option(value="Vainilla") limon
+											else
+												option  Chocolate
+												option(value='ChocoOreo') Chocolate con Oreo
+												option(value="ChocoOreo") Chocolate con chispas de chocolate
+												option Vainilla
+												option(value="ChocoOreo") Vainilla con oreo
+												option(value="ChocoOreo") Vainilla con chispas de chocolate
+												option Red velvet
+												option(value='Vainilla') Coco
+												option(value='Vainilla')  Cafe
+												option(value='Vainilla') Naraja
+												option(value='Vainilla') limon		
+										label(for= "flavorCake" ) Sabor del ponqué					
+								div(class= "row" id = "FlavorCream")
+									div(class="input-field col s12 center-block remove-floatp")
+										select( id ="flavorCream"  name="flavorCream"  data-error = ".errorTxt" + (9))
+											option(value="" disabled selected)   Seleciona el Sabor de Relleno
+											if(prePedido.type == "cakes")
+												option  Chocolate
+												option(value ="Vainilla")  Cafe
+												option Vainilla
+												option(value ="Vainilla") Naraja
+												option(value = "Queso Crema") Frosting de Queso crema
+												option Oreo
+												option Arequipe
+
+											else
+												option(value='ChocoOreo') Chocolate
+												option(value="Vainilla")  Cafe
+												option Vainilla
+												option(value="Vainilla") Naraja
+												option(value="Queso Crema") Frosting de Queso crema
+												option Oreo
+												option Arequipe
+										label(for = "flavorCream" ) Sabor del Relleno
+								div(class = "errorTxt9" + " right")
+								a.btn.waves.center.waves( href="#" id = "addCartAside" value = prePedido._id) 
+									i.material-icons.left add_shopping_cart
+									| Agregar Al carro
+
+			
+		script(src="/stactic/javaScript/eventShow.js")
+		.row
+			include ../../footer.jade	

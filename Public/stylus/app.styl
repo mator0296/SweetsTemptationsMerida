@@ -1,0 +1,113 @@
+Logo = #351327
+Bark =  'Berkshire Swash', cursive
+Amatic  = 'Amatic SC', cursive
+subText = #3f2803
+@import 'nib'
+@import 'customForm'
+@import 'hoverImageBig'
+@import 'customNav'
+@import 'customFooter'
+@import 'Pedidos'
+@import 'ImagenGalery'
+@import 'AsidePag'
+@import 'index'
+@import 'contact'
+@import 'aboutUs'
+@import 'valide'
+@import 'showPedido'
+
+a
+  color subText
+html
+  font-family: 'Open Sans', cursive;
+
+*
+  margin 0
+  padding 0
+
+.right_space
+  margin-right: 1.2em
+
+.left_space
+  margin-left: 1.6em
+
+.remove-float
+  float: none !important
+
+.top-space
+  margin-top: 2em
+
+.big-top-space
+  margin-top: 75px
+
+.container
+  width:80%
+.titlePag
+  background-color #eee
+  color Logo
+  font-family:Bark
+  height 125px
+  h1
+    margin 0
+    padding-top 15px
+  p
+    color subText
+    font-family Bark
+    
+@media screen and (max-width: 700px)
+  h1
+    font-size 40px
+  p
+    font-size 20px  
+@media screen and (max-width: 450px)
+  h1
+    font-size 30px
+  p
+    font-size 15px      
+    
+@media screen and (max-width: 240px)
+  h1
+    font-size 28px
+  p
+    font-size 14px  
+    
+
+
+
+.border
+  border-style:solid
+  border-width: 5px
+  border-color: Logo
+
+form.link
+  display: inline-block
+  input[type="submit"]
+    background-color: transparent
+    border: none
+    color: red
+
+.icono
+  height: 150px
+  width: 150px
+  margin: 0px
+
+
+.remove-floatp
+  display: inline-block
+  float: none !important
+  margin-right: -4px
+
+.ig-b- { display: inline; }
+.ig-b- img { visibility: hidden; }
+.ig-b-:hover { background-position: 0 -60px; } .ig-b-:active { background-position: 0 -120px; }
+.ig-b-16 { width: 16px; height: 16px; background: url(//badges.instagram.com/static/images/ig-badge-sprite-16.png) no-repeat 0 0; }
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+.ig-b-16 { background-image: url(//badges.instagram.com/static/images/ig-badge-sprite-16@2x.png); background-size: 60px 178px; } }
+
+.container
+  .row
+    margin-left 0
+    margin-right 0
+.collapsible-header
+  background-color Logo
+  color white

@@ -1,0 +1,81 @@
+extends ../../layout.jade
+block contenido
+	.titlePag
+		.container
+			h1 Caja
+			p Danos los datos del pago de tu compra
+	.container
+		.row
+			.col.s12.m12.l9.top-space
+				.formValide
+					h3.center Informacion de los datos de pago
+					form(action="/app/pedidos/valide" id = "form" method= "POST" enctype="multipart/form-data")
+						.row
+							.input-field.col.s12.m6
+								input(type="text", name="bankFrom", id="bankFrom" maxlength="20" data-error=".errorTxt1")
+								label(for="bankFrom") Banco del que lo hizo
+								div.errorTxt1.right 	
+							.input-field.col.s12.m6
+								input(type="text", name="nroReference",  id="nroReference" maxlength="20" data-error=".errorTxt2")
+								label(for="nroReference") Numero de referencia
+								div.errorTxt2.right
+						.row
+							.input-field.col.s12.m6
+								input(type="text", name="bankTo",  id="bankTo" maxlength="15" data-error=".errorTxt3")
+								label(for="bankTo") banco del que al hizo
+								div.errorTxt3.right
+							.input-field.col.s12.m6.file-field
+								.btn
+									span Capture
+									input(type="file", name="refere", id="refere")
+								.file-path-wrapper
+									input.file-path.validate(name= 'img' type="text" placeholder=" Imagen de la tranferencia" data-error=".errorTxt4")
+								div.errorTxt4.right
+					h3.center Carro de la Compra		
+				table.customTable.striped.centered
+					thead
+						th Nombre
+						th.hide-on-small-only Tipo
+						th Precio
+						th
+					-var totalPrice=0;	
+					tbody
+						for pedido in user.car
+							tr
+								td
+									img.materialboxed.circle(style='display:inline-block;' width= "50" height= "50" src="" + pedido.refere.replace("Public", '/stactic'))
+									p #{pedido.name}
+								td.hide-on-small-only #{pedido.type}
+								td #{pedido.price} Bfs.
+								-totalPrice += Number(pedido.price);
+								td 
+									form(action="/app/pedidos/"+"#{pedido._id}?_method=DELETE" method="POST" class = "link")
+												input(type="submit", value = "Eliminar" )
+						for pedido in user.budget
+							tr
+								td
+									img.materialboxed.circle(style='display:inline-block;' width= "50" height= "50" src="" + pedido.prePedido.refere.replace("Public", '/stactic'))
+									p #{pedido.prePedido.name}
+								td.hide-on-small-only #{pedido.prePedido.type}
+								td #{pedido.price} Bfs.
+								-totalPrice += Number(pedido.price);
+								td 
+									form(action="/app/pedidos/"+"#{pedido.prePedido._id}?_method=DELETE" method="POST" class = "link")
+												input(type="submit", value = "Eliminar" )						
+				.payBox.top-space
+					.row
+						.col.offset-s7.s5
+							.row.center
+								.col.price.s10.valign-wrapper
+									h5 Total del pedido:
+									h4 #{totalPrice} Bfs.
+							.divider
+							.row.top-space
+								.col.s12
+									a.right(type="submit", value = "Registrar" id = "submit" class= "btn btn-info" ) PAGAR
+			.col.s0.l3
+				include ../../asidePag.jade
+		script(src="/stactic/javaScript/eventValidate.js")
+		.row
+			include ../../footer.jade					
+	

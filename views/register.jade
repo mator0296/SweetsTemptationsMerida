@@ -1,0 +1,61 @@
+extends ./layout.jade
+block contenido
+	.titlePag
+		.container
+			h1 Registrate
+			p Has tu cuenta para tener un contro de tus pedidos
+	.container.space
+		div.row
+			div(class="col s12 m12 l9 center big-top-space")
+				form(action="/register", id = "form" method= "POST")
+					.row
+						.input-field.col.s12.m6
+							input(type="text", name="name", id="name", maxlength="20" data-error=".errorTxt9")
+							label(for="name") Nombre
+							div.errorTxt9.right
+						.input-field.col.s12.m6
+							input(type="text", name="lastName", id="lastName", maxlength="20" data-error=".errorTxt10")
+							label(for="lastName") Apellido	
+							div.errorTxt10.right
+						
+					.row
+						.input-field.col.s12.m6
+							input(type="text", name="username", id="username", maxlength="15" data-error=".errorTxt3")
+							label(for="username") Nombre de usario 
+							div.errorTxt3.right
+						
+						.input-field.col.s12.m6
+							input(type="text", name="email", id="email", data-error=".errorTxt4")
+							label(for="email") Correo	
+							div.errorTxt4.right
+			
+					.row
+						.input-field.col.s12.m6
+							select(id ="gender" name="gender"  data-error = ".errorTxt8")
+								option(value="" disabled selected)   Selecione su genero
+								option Femenino
+								option Masculino
+							label(for= 'gender')
+							div.errorTxt8.right
+						.input-field.col.s12.m6
+							input.datepicker(type="text" , name="date", id="date"  data-error=".errorTxt7" required)
+							label(for="date") Fecha de nacimiento
+							div.errorTxt7.right
+					.row
+						div.input-field.col.s12.m6
+							input(type="password", name="password", id="password1", maxlength="15",  data-error=".errorTxt5")
+							label(for="password") Contrasena
+							div.errorTxt5.right
+						div.input-field.col.s12.m6
+							label(for="passwordC") Confirma la Contrasena
+							input(type="password", name="passwordC", id="passwordC" data-error=".errorTxt6")
+							div.errorTxt6.right
+					div(class="top-space row")
+						div(class = "col s6 ")
+							input(type="submit", value = "Registrar" id = "submit" class= "btn btn-info" )
+						div( class="text-right col s6")
+							a(href="#" id ="hasAccount") ya tengo cuenta
+			.col.s0.m0.l3
+				include asidePag.jade
+	script(src="../stactic/javaScript/eventRegister.js")
+	include footer.jade			

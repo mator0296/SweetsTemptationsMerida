@@ -1,0 +1,87 @@
+extends ../../layout.jade
+block contenido
+	.container
+		.row
+			div(class=" col s8 big-top-space")					
+				form(action="/admin/pedidos", method= "POST" enctype="multipart/form-data" id = "form")			
+						.row
+							div.input-field.col.s12
+								input(type="text", name="name", id="name",class="validate" )
+								label(for="name") Nombre del producto
+
+							.input-field.col.s6
+								select(id ="type" name="type")
+									option(value="" disabled selected)   Seleciona el tipo de producto
+									optgroup(label = "Torta")
+										option(value= "3-four") Mantequilla Con oreos 
+										option(value= "3-three") Mantequilla sencilla
+										option(value= "3-two") Mantequilla con brownies
+										option(value= "3-one") Mantequilla con dulces
+										option(value= "onecakes") Fondant
+										option(value= "twocakes") Dulces
+									optgroup(label = "Cupcakes")
+										option(value= "onecupcakes") Con Crema de Mantequilla
+										option(value= "twocupcakes") Con fondant
+								label(for= "sabor") Tipo	
+							
+							.input-field.col.s6
+								select(id ="size" name="size")
+									optgroup(label = "Torta") 
+										option MiniTorta (1/4kg)
+										option 1/2 de kilogramo
+										option 3/4 de kilogramo
+										option 1 kilogramo
+										option 1 kilogramo y Medio
+										option 2 kilogramos
+									optgroup(label = "cupcakes")
+										option  4
+										option 	 6
+										option 	 7
+										option 	 9
+										option  12	
+											
+								label(for= "size") #{ (type == "cakes") ? "Tamaño" : "Unidades"}	
+						.row
+							div.input-field.col.s4
+								label(for="Ntoys") Numero de munecos
+								input(type="number",  placeholder="0" id ="Ntoys" name="Ntoys" min="0" max = "5")
+			
+							div.input-field.file-field.col.s8
+								div.btn
+									span Imagen				
+									input(type="file", name="refere", placeholder="Imagen de referencia", id="refere" )
+								div.file-path-wrapper
+									input.file-path.validate(type="text" placeholder="Imagen del pedido")		
+						.row
+							.input-field.col.s12
+								textarea.materialize-textarea(id = "content" name = "content")
+								label(for = "content") Informacion del producto
+						
+
+						label.left(for= "caramelos") Caramelos
+						.row
+										.col.s5
+											p
+												input(type="checkbox", name="oreo", id= "oreo")
+												label(for="oreo") Oreo
+											p			 
+												input(type="checkbox", name="candy" id="candy")
+												label(for="candy") candy
+										.col.s5
+											p
+												input(type="checkbox", name="cri" id= "Cri")
+												label(for="Cri") Cri Cri
+											p
+												input(type="checkbox", name="toronto" id= "toronto")
+												label(for="toronto") Toronto
+
+						div(class="top-space row center")
+							div(class = "col s6")
+								input(type="submit", value = "Registrar" class= "btn btn-info" )
+							div( class="text-right s6")
+								a(href="/galery" ) Atras
+
+			.col.s4
+				include ../../asidePag.jade			
+	script(src="../../stactic/javaScript/eventNewAdmin.js")
+	include ../../footer.jade					

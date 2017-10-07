@@ -1,0 +1,35 @@
+{
+  "name": "openshift-cartridge-nodejs-template",
+  "version": "1.0.1",
+  "description": "Custom Node.js cartridge for OpenShift - sample application",
+  "private": true,
+  "main": "start.js",
+  "scripts": {
+    "start": "node --use_strict start.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "cookie-session": "^2.0.0-beta.2",
+    "express": "^4.14.0",
+    "express-formidable": "^1.0.0",
+    "express-session": "^1.15.3",
+    "formidable": "^1.1.1",
+    "google-auth-library": "^0.10.0",
+    "googleapis": "^20.0.1",
+    "hashmap": "^2.1.0",
+    "jade": "^1.11.0",
+    "method-override": "^2.3.9",
+    "mongoose": "^4.10.7",
+    "mv": "^2.1.1",
+    "node-xlsx": "^0.10.0",
+    "passport": "^0.4.0",
+    "passport-facebook": "^2.1.1",
+    "passport-google-oauth": "^1.0.0",
+    "passport-google-oauth2": "^0.1.6",
+    "redis": "^2.8.0",
+    "socket.io": "^2.0.3",
+    "socket.io-client": "^2.0.3"
+  },
+  "author": "Rojas Lobo Victor <rojasv907@gmail.com>",
+  "license": "ISC"
+}

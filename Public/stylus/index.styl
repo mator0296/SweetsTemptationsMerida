@@ -1,0 +1,149 @@
+Logo = #351327
+Bark =  'Berkshire Swash', cursive
+Amatic  = 'Amatic SC', cursive
+subText = #3f2803
+.customSlider
+	h1
+		color Logo
+		text-shadow: 0px 0px 3px white
+		font-weight bold
+	h4
+		color subText
+		text-shadow: 0px 0px 3px white
+		font-weight bold
+		
+.temptationsBox
+	.card
+		span
+			color Logo
+			font-family Bark
+		p
+			color subText
+			font-family Amatic
+			font-weight bold
+		img
+			width 100%
+			height 250px
+		a
+			color Logo	
+.paralax1
+	background: url('http://assets.epicurious.com/photos/57b360e7df05218810c5212a/2:1/w_1260%2Ch_630/katharine-hepburns-brownies.jpg') 100% 0 no-repeat fixed
+	margin: 0px auto
+	position: relative
+	-webkit-background-size: cover
+	-moz-background-size: cover
+	-o-background-size: cover
+	background-size: cover
+	max-width: 1920px
+	height: 250px
+	border-radius 15px
+
+.serviceBox
+	margin-top 5px
+	img
+		width 60%
+		height 200px
+	.row
+		.col
+			h5
+				font-family: Bark
+				color Logo
+			p
+				color subText
+
+				
+			&.m8
+				background-image url('https://saborgourmet.com/wp-content/uploads/postres-de-navidad-tarta-de-chocolate.jpg') 
+				background-size 100% 100%		
+			height 400px
+			padding 0
+		border-radius 15px
+		border 2px solid Logo
+		background-color #eee	
+			
+.homeAddCartModal
+	width 70%
+	border 10px solid Logo
+	height 1200px
+	max-height 90%
+	overflow auto
+	.row
+		background-color white
+		margin 0
+		.col
+			padding 0
+	img
+		position absolute
+		width 66.6666666667%
+		height 100%
+		left 0px
+	.col.s4 
+		color Logo
+		height 100%
+	.col.s8
+		padding 0
+		height 100%
+	.input-field label
+		color Logo
+	a
+		color white
+	h1
+		text-align left
+		margin-bottom 0
+		font-size 40px
+		font-family Bark
+		font-style italic
+		margin-top 0.67em
+	.divider
+		background-color subText
+		margin-bottom 25px
+	.price
+		color subText
+		font-family Bark
+		font-size 35px
+	p
+		font-style italic
+		font-size 16px
+		text-align justify
+		margin-bottom 0
+		color subText
+	.container
+		width 80%
+	h6
+		font-style italic
+		font-size 20px
+		text-align justify
+#toast-container
+	top: auto !important;
+	right: auto !important;
+	.toast	
+		background-color Logo
+		color white	
+		
+@media screen and (max-width: 600px)
+	.customSlider
+		h1
+			font-size 30px
+		h4
+			font-size 20px
+	.serviceBox
+		img
+			width 60%
+		.row
+			.col	
+				height 150px	
+				
+@media screen and (max-width: 400px)
+	.customSlider
+		h1
+			font-size 20px
+		h4
+			font-size 10px
+	.serviceBox
+		img
+			width 60%
+		.row
+			.col	
+				height 100px	
+				h5, p
+					font-size 14px

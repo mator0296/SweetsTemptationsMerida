@@ -1,0 +1,162 @@
+doctype html
+html(lang="en")
+	head
+		title  Sweets Temptations Merida
+		meta(charset="utf-8")
+		meta(name ="viewport", content="width=device-width, initial-scale=1")
+		link( rel="icon" type="image/png" href="/stactic/pictures/Logo.png") 
+		script(src="https://code.jquery.com/jquery-3.2.1.js")
+		script(src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js")
+		script(src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.0/js/materialize.min.js")
+		//script(src="https://use.fontawesome.com/846797ac1c.js")
+		link(rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.0/css/materialize.min.css")
+		link(href="/stactic/css/app.css", rel="stylesheet")
+		link(href="/stactic/css/animate.css", rel="stylesheet")
+		link( href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet")
+		link( href="https://fonts.googleapis.com/css?family=Berkshire+Swash" rel="stylesheet")
+		link( href="https://fonts.googleapis.com/css?family=Amatic+SC" rel="stylesheet")
+		link( href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet")
+		script(src="/stactic/javaScript/eventLayout.js")
+		
+	body
+		header
+			nav.custom-nav
+					div.nav-wrapper
+						a(href="/" class="brand-logo center ") Sweets Temptations Merida  		
+						a( href="#" data-activates="mobile-demo" class="button-collapse right")
+							i(class="material-icons") menu
+						ul.left.hide-on-med-and-down
+							if(!user)
+								li
+									a(href= "/galery/special" ) Has tu presupuesto
+
+								li
+									a(href="/galery") Nuestros Productos
+							else if((user.name === "admin" && user.password === "admin" && user.email === "sweettemptations18@gmail.com"))
+								li
+									a(href= "/admin/prepedidos/new" ) AGREGAR PRODUCTO
+								li
+									a(href="/galery") Nuestros Productos	
+
+							else
+								li
+									a(href= "/galery/special" ) Has tu presupuesto
+
+								li
+									a(href="/galery") Nuestros Productos
+
+
+						ul.side-nav(id="mobile-demo")
+							li
+								a(href="/") Sweets Temptations Merida 
+							if(!user)
+								li
+									a.hide-on-small-only( class="modal-trigger" href="#modal1") INICIAR SESSION
+									a.hide-on-med-and-up( href = '/login') INICIAR SESSION	 
+							if(user)
+								li
+									a(href="/app/pedidos" ) Tu Carro
+							li
+								a(href= "/galery/special" ) Has tu presupuesto
+							li
+								a(href="/galery") Nuestros Productos
+							li
+								a(href="/FAQ") Como Trabajamos
+							li
+								a(href="/about") Nuestros Ingredientes
+	
+
+						ul.right.hide-on-med-and-down
+							li
+								a(href="https://www.instagram.com/sweetstemptationsmerida/" data-toggle="tooltip" class="instagram" data-placement="bottom" title="Nuestro Instagram")
+									i(class="fa fa-instagram" aria-hidden="true")
+							li
+								a(href="https://www.facebook.com/sweettemptations.180" data-toggle="tooltip" class="facebook" data-placement="bottom" title="Nuestro Facebook")
+									i(class="fa fa-facebook" aria-hidden="true")
+							if(!user)
+								li
+									a.hide-on-small-only( class="modal-trigger" href="#modal1") INICIAR SESSION
+									a.hide-on-med-and-up( href = '/login') INICIAR SESSION
+							else if(!(user.name === "admin" && user.password === "admin" && user.email === "sweettemptations18@gmail.com"))
+								li
+									a(href="#" class="button-car") 
+										i( class="material-icons prefix") shopping_cart
+									if(user.car.length>0 || user.budget.length>0 )
+										div.content-car
+											for pedidos in user.car
+												a(href = "#") 
+													.row.top-space
+														.col.s4.valign-wrapper
+															img.circle(src = "/" + pedidos.refere.replace("Public","stactic"))
+														.col.s8.center
+															span  #{pedidos.name}
+															span.pricesStatic  #{pedidos.pedidoValid ? (pedidos.price + 'Bfs.') : "No Publicado"}
+											for pedidos in user.budget
+												a(href = "#") 
+													.row.top-space
+														.col.s4.valign-wrapper
+															img.circle(src = "/" + pedidos.prePedido.refere.replace("Public","stactic"))
+														.col.s8.center
+															span  #{pedidos.prePedido.name}
+															span.pricesStatic  #{pedidos.price + 'Bfs.'}				
+											.row.top-space
+												.col.s12.center
+													a(href="/app/pedidos" class="btn") Ir al Carro					
+								li.userName.center
+									if(user.username)
+										a #{user.username}
+									else
+										a Usuario  			
+								li 
+									a(href= "/endSession" id = "endSession"  ) 
+										i(class="material-icons") lock								
+							else
+								li
+									a(href="/admin/pedidos" class="button-car") 
+										i( class="material-icons prefix") shopping_cart
+								li
+									a #{user.username}		
+								li 
+									a(href= "/endSession" id = "endSession"  ) 
+										i(class="material-icons") lock	
+						
+			
+			div.modal(id="modal1", class="modal1")
+						div.row
+							div.col.offset-s1.s10.center
+									img(src="/stactic/pictures/Logo.png" class="bigBrand")
+									form(action="/login", method= "POST" id = "formValidate"  novalidate="novalidate" class = "formValidate" )
+										div.row
+											div.input-field.col.s12
+												i( class="material-icons prefix") email
+												input(type="text", name="email", id="email", class="validate", data-error=".errorTxt1")
+												label(for="email") Correo
+												div.errorTxt1.right
+										div.row
+											div.input-field.col.s12
+												i( class="material-icons prefix") vpn_key
+												input(type="password", name="password", id="password" data-error=".errorTxt2" )
+												label(for="password",) Contrasena
+												div.errorTxt2.right
+										div.row
+											div
+												button(type="submit", value = "Iniciar sesion" class= " col s12 submit waves-effect waves-light btn" ) Iniciar sessión
+											div(style="position:relative;")
+												//div(id= 'toast-container')
+										div.row
+											div(class="text-right col s6")
+												a(href="/register" )  Registrate Ahora
+											div.right.col.s6
+												.col.s6
+													a.btn.waves.indigo(href="/auth/facebook")
+														i(class="fa fa-facebook" aria-hidden="true")
+												.col.s6
+													a.btn.waves.red.darken-3(href="/auth/google")
+														i(class="fa fa-google" aria-hidden="true")
+												
+				
+			.progress
+				.indeterminate
+			
+					
+		block contenido

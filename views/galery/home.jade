@@ -1,0 +1,21 @@
+extends ../layout.jade
+block contenido
+	.HomeGalery
+		.row
+			div.col.s6
+				div.fotoContainer
+					div.imageBox
+						a(href = "/galery/new?type=cakes" id="torta" ) 
+							img(src="/stactic/pictures/Cake.png")
+							div.textBox
+								h1 Torta
+								p Contenido
+			div.col.s6
+				div.fotoContainer
+					div.imageBox
+						a(href = "/galery/new?type=cupcakes" id="Cupcake" ) 
+							img(src="/stactic/pictures/Cupcakes.jpg")
+							div.textBox
+								h1 Cupcake
+								p Contenido
+	include ../footer.jade

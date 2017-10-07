@@ -1,0 +1,53 @@
+extends ./layout.jade
+block contenido
+
+	.titlePag
+		.container
+			h1 Comunicate con nosotros
+			p Preguntanos lo que quieras y te responderemos
+	.container.top-space
+		.row
+			.col.s9
+				.ownInformation
+					.row
+						.col.s6
+							.container
+								span Dirección
+								p Merida-Venezuela, Municipio Libertador Los Curos
+						.col.s6
+							.container
+								span Numero de telefonos
+								p 04240824564
+								p 04162254875
+								span Correo de contacto
+								p sweetstemptationsmerida@gmail.com
+							
+				.forConsult.card.top.space
+					.container
+						form(action="/contact", method= "POST" enctype="multipart/form-data" id = "form")
+							.row
+								div(class="input-field")
+									input(type="text", name="name", id="name", maxlength="20" data-error=".errorTxt1")
+									label(for="name") Nombre
+									div.errorTxt1.right
+							.row
+								div(class="input-field")
+									input(type="number", name="number", id="number", maxlength="20" data-error=".errorTxt1")
+									label(for="number") Number
+									div.errorTxt1.right
+							.row
+								div(class="input-field")
+									input(type="email", name="mail", id="mail", maxlength="20" data-error=".errorTxt2")
+									label(for="mail") Correo
+									div.errorTxt2.right
+							.row
+								.input-field.col.s12
+									textarea.materialize-textarea(id = "content" name = "content")
+									label(for = "content") Mesaje
+							.row
+								.col.s6
+									input(type="submit", value = "Registrar" class= "btn btn-info" )				
+			.col.s3
+				include ./asidePag.jade
+
+	include ./footer.jade

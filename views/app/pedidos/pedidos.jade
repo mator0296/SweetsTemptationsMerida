@@ -1,0 +1,165 @@
+extends ../../layout.jade
+block contenido
+	.titlePag
+		.container
+			h1 Carro de Compra
+			p Los productos que has agregado al carrito
+	.container.big-top-space
+		.row
+			.col.s12.m12.l9
+				table.customTable.striped.centered
+					thead
+						th Nombre
+						th.hide-on-small-only	 Tipo
+						th Precio
+						th
+						th
+					-var totalPrice=0, i=0;
+					tbody
+						for pedido in user.budget
+							tr
+								td
+									img.circle(style='display:inline-block;' width= "150" height= "150" src="" + pedido.prePedido.refere.replace("Public", '/stactic'))
+									p #{pedido.prePedido.name}
+								td.hide-on-small-only	 #{pedido.prePedido.type}
+								td.price #{pedido.price} Bfs.
+								td
+									a.hide-on-small-only(href="#showPedidoModal" + i , class="right-space" , id = "openShowPedido" + i) Mirar
+									a.hide-on-med-and-up(href="/app/prepedidos/"+pedido.prePedido._id ) Mirar	
+									.modal.showPedidoModal(id ="showPedidoModal" + i)
+										.row
+											.col.s8
+												img(src= pedido.prePedido.refere.replace("Public","/stactic"))
+											.col.s4
+												.container
+													h1= pedido.prePedido.name
+													.divider
+													h6 Tamaño: #{pedido.prePedido.size}
+													h6= pedido.prePedido.content							
+													p #{(pedido.prePedido.candy ? " Con delisosos caramelos" : "")}
+													p #{(pedido.prePedido.torontos ? " Con delisosos torontos" : "")} 
+													p #{(pedido.prePedido.cri ? " Con delisosos chocolate cri cri" : "") }
+													p #{(pedido.prePedido.oreo ? " Con delisosas galletas oreos" : "") }
+													p #{(pedido.prePedido.Ntoys ? " Con esta cantidad de munecos: " + pedido.prePedido.Ntoys  : "")}
+													p.prices Precio de: #{pedido.price} bsf	
+
+								td 
+									form(action="/app/prepedidos/"+"#{pedido.prePedido._id}?_method=DELETE" method="POST" class = "link")
+												input(type="submit", value = "Eliminar" )
+								-totalPrice += Number(pedido.price);i++;
+
+						for pedido in user.car
+							tr
+								td
+									img.circle(style='display:inline-block;' width= "150" height= "150" src="" + pedido.refere.replace("Public", '/stactic'))
+									p #{pedido.name}
+								td.hide-on-small-only	 #{pedido.type}
+								td.price #{pedido.pedidoValid ? (pedido.price + 'Bfs.') : "No Publicado"}
+								td
+									a.hide-on-small-only(href="#showPedidoModal" + i , class="right-space" , id = "openShowPedido" + i) Mirar
+									a.hide-on-med-and-up(href="/app/pedidos/"+pedido.prePedido._id ) Mirar
+									.modal.showPedidoModal(id ="showPedidoModal" + i)
+										.row
+											.col.s8
+												img(src= pedido.refere.replace("Public","/stactic"))
+											.col.s4
+												.container
+													h1= pedido.name
+													.divider
+													h6 Tamaño: #{pedido.size}
+													h6= pedido.content							
+													p #{(pedido.candy ? " Con delisosos caramelos" : "")}
+													p #{(pedido.torontos ? " Con delisosos torontos" : "")} 
+													p #{(pedido.cri ? " Con delisosos chocolate cri cri" : "") }
+													p #{(pedido.oreo ? " Con delisosas galletas oreos" : "") }
+													p #{(pedido.Ntoys ? " Con esta cantidad de munecos: " + pedido.Ntoys  : "")}
+													p.prices Precio de: #{pedido.pedidoValid ? (pedido.price + 'Bfs.') : "No Publicado"}	
+
+								td 
+									form(action="/app/pedidos/"+"#{pedido._id}?_method=DELETE" method="POST" class = "link")
+												input(type="submit", value = "Eliminar" )
+								-if(pedido.pedidoValid){totalPrice += Number(pedido.price);}i++;
+				.payBox.top-space
+					.row
+						.col.offset-s7.s5
+							.row.center
+								.col.price.s10.valign-wrapper
+									h5 Total del pedido:
+									h4 #{totalPrice} Bfs.
+							.divider
+							.row.top-space
+									if(!user.buyState.preBuy)
+										.col.s6
+											p.left(id= "preBuy") Estatus del pedido: No enviado
+										.col.s6
+											a.left.btn(class="modal-trigger" href="#modal2") Enviar Pedido
+											div.modal.modal2(id="modal2")
+												.container
+													form(action="/app/pedidos/valide" id = "form" method= "POST" enctype="multipart/form-data")
+														.row
+															.col.s12.center
+																img(src="/stactic/pictures/Logo.png" class="bigBrand")
+														.row
+															.input-field.col.s6
+																input(type="text", name="from", id="from", class="validate")
+																label(for="from") De
+																div.errorTxt1.right
+															.input-field.col.s6
+
+																input(type="text", name="to", id="to",)
+																label(for="to") Para
+																div.errorTxt2.right
+														.row
+															.input-field.col.s12
+																input(type="text" name="addres", id="addres")
+																label(for="addres") Direccion de entrega
+																div.errorTxt3.right
+														.row
+															.input-field.col.s6
+																input(type="text", name="phoneNumber", id="phoneNumber", maxlength="13" data-error=".errorTxt4")
+																label(for="phoneNumber") Numero de Telefono
+																div.errorTxt4.right
+														
+															.input-field.col.s6
+																select( name="pay", id="pay" data-error = ".errorTxt5")
+																	option(value="" disabled selected)  Seleciona tu forma de pago
+																	option  Tranferencia
+																	option 	Efectivo
+																label(for="pay") Metodo de pago predilecto
+																div.errorTxt5.right
+														.row
+															div.input-field.col.s6
+																input.datepicker(type="text" , name="date", id="date" data-error = ".errorTxt6")
+																label(for="date") Escoja la fecha de entrega
+																div.errorTxt6.right
+															.input-field.col.s6		
+																input( name='clock' id = 'clock' type="text" class="timepicker")
+																label(for="clock") Escoja la Hora
+																div.errorTxt7.right		
+														.row.top-space
+															.col.s6
+																input(type="submit", value = "Enviar Pedido" id = "submit" class= "btn btn-info" )
+
+										
+									else if(!user.buyState.state)
+										.col.s12
+												p.center(id= "preBuy") Estatus del pedido: Enviado no Validado
+									else if(user.buyState.state == "Validado")
+										.col.s6
+												p.left(id= "preBuy") Estatus del pedido: Validado 
+										.col.s6
+											a.left.btn(href ="pedidos/valide", value = ""  ) Pagar
+									
+										
+									else if(user.buyState.state == "Validando pago")
+										.col.s12
+												p.center(id= "preBuy") Estatus del pedido: Validando Pago
+									else
+										.col.s12
+												p.left(id= "preBuy") Estatus del pedido: Pagado										
+			script(src="/stactic/javaScript/eventStateApp.js")
+			.col.s0.l3
+				include ../../asidePag.jade											
+	include ../../footer.jade				
+	
+

@@ -1,0 +1,105 @@
+Logo = #351327
+Bark =  'Berkshire Swash', cursive
+Amatic  = 'Amatic SC', cursive
+subText = #3f2803
+.custom-nav
+  background:Logo
+  a
+    color:white
+    font-weight bold
+    font-family Amatic
+    font-size 1.5rem
+  .right.hide-on-med-and-down 
+    .userName
+      min-width 120px
+      height 64px      
+  .brand-logo
+    font-family:'Berkshire Swash', cursive
+  .side-nav
+    width 230px
+    li
+      a
+        font-weight bold
+        font-size 16px
+        
+      
+@media only screen and (max-width: 700px)
+  .custom-nav
+    .brand-logo
+      font-size 22px
+    
+    
+@media only screen and (max-width: 570px)
+  .custom-nav
+    .brand-logo
+      font-size 15px 
+@media only screen and (max-width: 330px)
+  .custom-nav
+    .brand-logo
+      font-size 10px        
+  
+.facebook:hover
+  background-color: #3b5898
+  color: white
+
+.instagram:hover
+  background-color: purple
+  color: white
+
+.modal1
+  width:350px
+  height:550px
+  overflow-x:hidden
+  overflow-y:hidden
+  border 2px solid Logo
+  .row .col
+    padding 0
+
+.bigBrand
+  max-height:200px
+  max-width:200px
+  
+.content-car
+  background-color:white
+  color:Logo
+  position:absolute
+  border-radius:5px
+  visibility:hidden
+  z-index:998
+  border 1px solid Logo
+  span 
+    color:Logo
+    font-size 12px
+    font-family Bark
+  &::before
+    content:" "
+    position:absolute
+    top:-10px
+    left:9%
+    border-style: solid
+    border-width:5px
+    border-color:  transparent transparent  white transparent 
+    z-index:998
+  .row
+    margin 0
+    padding 1em 0
+    .col
+      padding 0 
+  img
+    width:100%
+    height 60px
+  .pricesStatic
+    color subText
+
+.button-car:hover + .content-car
+  visibility:visible
+
+.button-car + .content-car:hover
+  visibility:visible
+  
+.progress
+  margin 0
+  background-color Logo
+  .indeterminate
+    background-color white  
+

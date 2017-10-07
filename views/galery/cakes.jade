@@ -1,0 +1,63 @@
+extends ../layout.jade
+block contenido
+		div(class=" center" id= "typeCakes" )
+			.HomeGalery
+				.row
+					div.col.s4
+						div.fotoContainer
+							div.imageBox
+								a(href="/app/pedidos/new" id = "type1" ) 
+									img(src="/stactic/pictures/tortaFomdant.jpg")
+									div.textBox
+										h1 Torta Fomdant
+										p Contenido
+					div.col.s4
+						div.fotoContainer
+							div.imageBox
+								a(href="/app/pedidos/new" id = "type2")
+									img(src="/stactic/pictures/tortaDulces.jpg" )
+									div.textBox
+										h1 Torta Caramelos
+										p Contenido
+					div.col.s4
+						div.fotoContainer
+							div.imageBox
+								a(href="/app/pedidos/new" id = "type3")
+									img(src="/stactic/pictures/tortabutterCream.JPG")
+									div.textBox
+										h1 Tortas mantequilla
+										p Contenido	
+		div(class="big-top-space center" id= "cake-buttercream" style='display:none;')
+			.HomeGalery
+				.row
+					div.col.s4
+						div.fotoContainer
+							div.imageBox
+								a(href="/app/pedidos/new" id = "type3-one" ) 
+									img(src="/stactic/pictures/tortaFomdant.jpg")
+									div.textBox
+										h1 Torta Con dulces
+										p Contenido
+						div.price
+							h1(id="priceCakes3-one")
+					div.col.s4
+							div.fotoContainer
+								div.imageBox
+									a(href="/app/pedidos/new" id = "type3-two" ) 
+										img(src="/stactic/pictures/tortaFomdant.jpg")
+										div.textBox
+											h1 Torta con brownies
+											p Contenido
+							div.price
+								h1(id="priceCakes3-two")
+					div.col.s4
+						div.fotoContainer
+							div.imageBox
+								a(href="/app/pedidos/new" id = "type3-three" ) 
+									img(src="/stactic/pictures/tortaFomdant.jpg")
+									div.textBox
+										h1 Torta Sencilla
+										p Contenido
+						div.price
+							h1(id="priceCakes3-three")
+		script(src="../stactic/javaScript/eventCakes.js")

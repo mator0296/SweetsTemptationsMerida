@@ -1,0 +1,130 @@
+extends ./layout.jade
+block contenido
+	link(href="/stactic/css/flexslider.css", rel="stylesheet")
+	section
+		div.slider.customSlider
+			ul.slides
+				li
+					img( src="/stactic/pictures/flexSlider/slide1.jpg")
+					div.caption.center-align
+						h1 Los mejor de nosotros para ti
+						h4 Si te gusta el chocolate y lo abundante llegaste al lugar adecuado
+						img(src = "/stactic/pictures/Logo.png" class="bigBrand")
+				li
+					img( src="/stactic/pictures/flexSlider/slide2.jpg!d")
+					div.caption.left-align
+						h1 Los mejor de nosotros para ti
+						h4 Si te gusta el chocolate y lo abundante llegaste al lugar adecuado
+						
+		
+	.container.serviceBox.top-space
+		.row
+			.col.s12.m8
+
+			.col.s12.m4.center
+				.container
+					h5 entrega a domicilio
+					p cuando usted lo necesite ahi estararemos para decorar sus fiestas directo en su casa
+		.row
+			.col.s12.m8.hide-on-med-and-up
+			.col.s12.m4.center
+				.container
+					h5 Solo los mejores Ingredientes
+					p Con lo mejor que podemos brindarle solo para su difrute
+			.col.s12.m8.hide-on-small-only
+
+	section.paralax1.container.top-space
+
+	.container.temptationsBox.top-space
+		.row
+			if(temptations)
+				for pedidos, i in temptations
+					.col.s12.m6.l3
+						.card.hoverable.center
+							img(src = "/" + pedidos.refere.replace("Public","stactic"))
+							span.card-title= pedidos.name
+							if(pedidos.type=='cakes')
+								p= pedidos.size
+							else
+								p #{pedidos.size} Unidades
+							.pricesStatic #{Math.ceil(Number(pedidos.Prices.minPrices.price)*0.001)*1000} - #{Math.ceil(Number(pedidos.Prices.maxPrices.price)*0.001)*1000} Mil bsf
+							a.hide-on-small-only.clickModalHome(href="#addCartModal" + i)
+								i.material-icons add_shopping_cart
+								| Agregar Al carro
+							a.hide-on-med-and-up.clickModalHome(href="/app/prepedidos/"+pedidos._id+ "?op=add"  )
+								i.material-icons add_shopping_cart
+								| Agregar Al carro	
+					.modal.homeAddCartModal(id = 'addCartModal' + i)
+						.row
+							.col.s8
+								img(src= pedidos.refere.replace("Public","/stactic"))
+							.col.s4
+								.container
+									h1= pedidos.name
+									.divider
+									h6 Tamaño: #{pedidos.size}
+									h6= pedidos.content							
+									p #{(pedidos.candy ? " Con delisosos caramelos" : "")}
+									p #{(pedidos.torontos ? " Con delisosos torontos" : "")} 
+									p #{(pedidos.cri ? " Con delisosos chocolate cri cri" : "") }
+									p #{(pedidos.oreo ? " Con delisosas galletas oreos" : "") }
+									p #{(pedidos.Ntoys ? " Con esta cantidad de munecos: " + pedidos.Ntoys  : "")}
+									.prices Precio de:#{Math.ceil(Number(pedidos.Prices.minPrices.price)*0.001)*1000} - #{Math.ceil(Number(pedidos.Prices.maxPrices.price)*0.001)*1000} Mil bsf
+									for prices in pedidos.Prices.Price
+										.price(id = prices.flavorCake.replace(" ", "")  + prices.flavorCream.replace(" ", "") + (i) style = "display:none;")  #{Math.ceil(Number(prices.price)*0.001)*1000} Bsf.	
+									form.top-space(id = "form" + (i))
+										div(class= "row" id = "FlavorCake")
+											div(class="input-field col s12 center-block remove-floatp ")
+												select( id ="flavorCake" + (i) name="flavorCake"+ (i)  data-error = ".errorTxt" + (i + 3))
+													option(value="" disabled selected)   Seleciona el Sabor del ponqué
+													if(pedidos.type == "cakes")
+														option  Chocolate
+														option Vainilla
+														option Red Velvet
+														option(value="Vainilla") Coco
+														option(value="Vainilla")  Cafe
+														option(value="Vainilla") Naraja
+														option(value="Vainilla") limon
+													else
+														option  Chocolate
+														option(value='ChocoOreo') Chocolate con Oreo
+														option(value="ChocoOreo") Chocolate con chispas de chocolate
+														option Vainilla
+														option(value="ChocoOreo") Vainilla con oreo
+														option(value="ChocoOreo") Vainilla con chispas de chocolate
+														option Red velvet
+														option(value='Vainilla') Coco
+														option(value='Vainilla')  Cafe
+														option(value='Vainilla') Naraja
+														option(value='Vainilla') limon	
+												label(for= "flavorCake" + (i)) Sabor del ponque					
+										div(class= "row" id = "FlavorCream")
+											div(class="input-field col s12 center-block remove-floatp")
+												select( id ="flavorCream" + (i) name="flavorCream" + (i) data-error = ".errorTxt" + (i + 3))
+													option(value="" disabled selected)   Seleciona el Sabor de Relleno
+													if(pedidos.type == "cakes")
+														option  Chocolate
+														option(value ="Vainilla")  Cafe
+														option Vainilla
+														option(value ="Vainilla") Naraja
+														option(value = "Queso Crema") Frosting de Queso crema
+														option Oreo
+														option Arequipe
+													else
+														option(value='ChocoOreo') Chocolate
+														option(value="Vainilla")  Cafe
+														option Vainilla
+														option(value="Vainilla") Naraja
+														option(value="Queso Crema") Frosting de Queso crema
+														option Oreo
+														option Arequipe
+												label(for = "flavorCream" + (i)) Sabor del Relleno
+										div(class = "errorTxt" + (i+3)+ " right")
+										a.waves-effect.waves-light.btn( href="#" id = "addCart" +(i) value = pedidos._id) 
+											i.material-icons.left add_shopping_cart
+											| Agregar Al carro
+										p Todos los precios incluyen IVA.
+										p Tiempos de despacho: Merida: 72 hrs 
+
+	script(src="/stactic/javaScript/eventHomePage.js")
+	include footer.jade

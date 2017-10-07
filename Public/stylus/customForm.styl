@@ -1,0 +1,93 @@
+Logo = #351327
+Bark =  'Berkshire Swash', cursive
+Amatic  = 'Amatic SC', cursive
+subText = #3f2803
+.input-field label
+	color:Logo
+.input-field 
+	input:focus + label 
+		color: Logo !important
+	input:focus
+		border-bottom: 1px solid Logo !important
+		box-shadow: 0 1px 0 0 Logo !important
+	.prefix.active
+		color: Logo;
+	input[type=text].valid
+		border-bottom: 1px solid Logo
+		box-shadow: 0 1px 0 0 Logo
+	input[type=text].invalid
+		border-bottom: 1px solid Logo
+		box-shadow: 0 1px 0 0 Logo
+	ul
+		li
+			span
+				color:Logo
+
+.picker__date-display, .picker__day--selected, .picker__day--selected:hover, .picker--focused .picker__day--selected	
+	background-color:Logo
+.picker__close, .picker__today, .picker__day.picker__day--today,	
+	color:Logo
+.btn, .btn:hover, .btn:focus, .btn-large:focus, .btn-floating:focus
+	background-color:Logo
+.dropdown-content li>a, .dropdown-content li>span
+	color Logo
+.input-field div.error
+	position:relative
+	top:-1rem
+	left:0rem
+	font-size:0.8rem
+	color:Red
+input.valid:not([type]), input.valid:not([type]):focus, input[type=text].valid:not(.browser-default), input[type=text].valid:not(.browser-default):focus, input[type=password].valid:not(.browser-default), input[type=password].valid:not(.browser-default):focus, input[type=email].valid:not(.browser-default), input[type=email].valid:not(.browser-default):focus, input[type=url].valid:not(.browser-default), input[type=url].valid:not(.browser-default):focus, input[type=time].valid:not(.browser-default), input[type=time].valid:not(.browser-default):focus, input[type=date].valid:not(.browser-default), input[type=date].valid:not(.browser-default):focus, input[type=datetime].valid:not(.browser-default), input[type=datetime].valid:not(.browser-default):focus, input[type=datetime-local].valid:not(.browser-default), input[type=datetime-local].valid:not(.browser-default):focus, input[type=tel].valid:not(.browser-default), input[type=tel].valid:not(.browser-default):focus, input[type=number].valid:not(.browser-default), input[type=number].valid:not(.browser-default):focus, input[type=search].valid:not(.browser-default), input[type=search].valid:not(.browser-default):focus, textarea.materialize-textarea.valid, textarea.materialize-textarea.valid:focus, .select-wrapper.valid>input.select-dropdown
+	border-bottom 1px solid Logo
+	box-shadow 0 1px 0 0 Logo	
+	
+[type="checkbox"]:checked+label:before
+	border-right 2px solid Logo
+	border-bottom 2px solid Logo	
+textarea.materialize-textarea:focus:not([readonly])
+	border-bottom 1px solid Logo
+	box-shadow 0 1px 0 0 Logo
+	& + label
+		color Logo	
+
+.carousel
+	background-color black
+	.carousel-item
+		height 300px
+		width 300px
+		img
+			height 300px
+@media screen and (max-width: 600px)
+	.carousel
+		.carousel-item
+			width 200px
+			height 200px
+			img
+				height 200px
+		height 300px		
+			
+.filePreview
+	img
+		width 50px
+		height 50px
+.forConsult
+	.container
+		width 90%
+.mesageimg
+	color Logo
+	font-size 15px
+	a
+		color subText
+		font-weight bold		
+		
+#form
+	.row
+		.col
+			padding-bottom 0		
+.uploadFile
+	font-size 15px
+	h5
+		color Logo
+	a
+		color subText
+		font-weight bold

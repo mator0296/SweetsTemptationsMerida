@@ -1,0 +1,130 @@
+extends ../layout.jade
+block contenido
+
+	.titlePag
+		.container
+			h1 Nuestros Productos
+			p Seleciona el que quieras para ti
+	.container
+		.row
+			.col.s12.m12.l9.top-space
+				.row
+					.col.s12.m6
+						ul.pagination
+							li.disable
+								a(id = "pagLeft" href = "#")
+									i.material-icons chevron_left
+							for e,j in Array(Math.ceil(pedidos.length/9))
+								li(class = (j == 0 ? "active" : " " ) , id= "linkpag" + (j+1))
+									a.waves-effect= j+1
+
+							li.disable
+								a(id = "pagRight" href = "#")
+									i.material-icons chevron_right
+					.col.s12.m6.top-space.selects
+						a.right(href="/galery?type1=cakes") Cakes 
+						a.right(href="/galery?type1=cupcakes") Cupcakes |
+						a.right(href="/galery?type1=cakes+two") Dulces |
+						a.right(href="/galery?type1=cakes+one&type2=cupcakes+two") Fondant |
+
+
+
+				.row
+					for pedido, i in pedidos
+						if(i%9 === 0)
+							.row(id= "pag" + ((i/9) + 1), style = (i>=9 ? "display:none;" : " "))
+								for e, j in Array(9)
+									if(pedidos[j+i])
+										.col.s12.m6.l4.center
+											.Title
+												span.truncate #{pedidos[j+i].name}			
+											.imageGalery
+												.imageBox
+													img(src= pedidos[j+i].refere.replace("Public","/stactic"))
+													.textBox
+														.row
+															.col.s12
+																a.hide-on-small-only.waves.waves-light.truncate.btn(href="#addCartModal" + (i+j) id = 'buttonModalGalery'+(i+j) ) 
+																	i.material-icons.left add_shopping_cart
+																	| Agregar al carro
+																a.hide-on-med-and-up.waves.waves-light.truncate.btn(href="/app/prepedidos/"+pedidos[j+i]._id+ "?op=add" ) 
+																	i.material-icons.left add_shopping_cart
+																	| Agregar al carro	
+																	
+											.pricesStatic #{Math.ceil(Number(pedidos[i+j].Prices.minPrices.price)*0.001)*1000} - #{Math.ceil(Number(pedidos[i+j].Prices.maxPrices.price)*0.001)*1000} Mil bsf
+
+										.modal.addCartModal(id="addCartModal" + (i+j))
+											.row
+												.col.s8
+													img(src= pedidos[j+i].refere.replace("Public","/stactic"))
+												.col.s4
+													.container
+														h1= pedidos[j+i].name
+														.divider
+														h6 Tamaño: #{pedidos[j+i].size}
+														h6= pedidos[j+i].content							
+														p #{(pedidos[j+i].candy ? " Con delisosos caramelos" : "")}
+														p #{(pedidos[j+i].torontos ? " Con delisosos torontos" : "")} 
+														p #{(pedidos[j+i].cri ? " Con delisosos chocolate cri cri" : "") }
+														p #{(pedidos[j+i].oreo ? " Con delisosas galletas oreos" : "") }
+														p #{(pedidos[j+i].Ntoys ? " Con esta cantidad de munecos: " + pedidos[j+i].Ntoys  : "")}
+														.prices Precio de:#{Math.ceil(Number(pedidos[j+i].Prices.minPrices.price)*0.001)*1000} - #{Math.ceil(Number(pedidos[j+i].Prices.maxPrices.price)*0.001)*1000} Mil bsf
+														for prices in pedidos[j+i].Prices.Price
+															.price(id = prices.flavorCake.replace(" ", "")  + prices.flavorCream.replace(" ", "") + (i+j) style = "display:none;")  #{Math.ceil(Number(prices.price)*0.001)*1000} Bsf.
+														div(class= "row" id = "FlavorCake")
+															div(class="input-field col s12 center-block remove-floatp ")
+															form(id = "form" + (i+j))
+																select( id ="flavorCake" + (i+j) name="flavorCake"+ (i+j)  data-error = ".errorTxt" + (i+j + 3))
+																	option(value="" disabled selected)   Seleciona el Sabor del ponqué
+																	if(pedidos[i+j].type == "cakes")
+																		option  Chocolate
+																		option Vainilla
+																		option Red Velvet
+																		option(value="Vainilla") Coco
+																		option(value="Vainilla")  Cafe
+																		option(value="Vainilla") Naraja
+																		option(value="Vainilla") limon
+																	else
+																		option  Chocolate
+																		option(value='ChocoOreo') Chocolate con Oreo
+																		option(value="ChocoOreo") Chocolate con chispas de chocolate
+																		option Vainilla
+																		option(value="ChocoOreo") Vainilla con oreo
+																		option(value="ChocoOreo") Vainilla con chispas de chocolate
+																		option Red velvet
+																		option(value='Vainilla') Coco
+																		option(value='Vainilla')  Cafe
+																		option(value='Vainilla') Naraja
+																		option(value='Vainilla') limon	
+																label(for= "flavorCake" + (i+j)) Sabor del ponqué					
+														div(class= "row" id = "FlavorCream")
+															div(class="input-field col s12 center-block remove-floatp")
+																select( id ="flavorCream" + (i+j) name="flavorCream" + (i+j) data-error = ".errorTxt" + (i+j + 3))
+																	option(value="" disabled selected)   Seleciona el Sabor de Relleno
+																	if(pedidos[i+j].type == "cakes")
+																		option  Chocolate
+																		option(value ="Vainilla")  Cafe
+																		option Vainilla
+																		option(value ="Vainilla") Naraja
+																		option(value = "Queso Crema") Frosting de Queso crema
+																		option Oreo
+																		option Arequipe
+																	else
+																		option(value='ChocoOreo') Chocolate
+																		option(value="Vainilla")  Cafe
+																		option Vainilla
+																		option(value="Vainilla") Naraja
+																		option(value="Queso Crema") Frosting de Queso crema
+																		option Oreo
+																		option Arequipe
+																label(for = "flavorCream" + (i+j)) Sabor del Relleno
+														div(class = "errorTxt" + (i+j+3)+ " right")					
+														a( href="#" id = "addCart" +(i+j) value = pedidos[j+i]._id) 
+															i.material-icons.left add_shopping_cart
+															| Agregar Al carro
+
+			.col.s0.l3
+				include ../asidePag.jade
+			script(src="/stactic/javaScript/eventPagGalery.js")
+		.row
+			include ../footer.jade
