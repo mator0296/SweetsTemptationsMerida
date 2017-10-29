@@ -5,7 +5,8 @@
   "private": true,
   "main": "start.js",
   "scripts": {
-    "start": "node --use_strict start.js"
+    "start": "node --use_strict start.js",
+    "test": "IP=0.0.0.0 PORT=3030 mocha --timeout 5000 tests/*_test.js"
   },
   "dependencies": {
     "body-parser": "^1.17.2",
