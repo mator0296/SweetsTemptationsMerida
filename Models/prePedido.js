@@ -1,18 +1,44 @@
-var mongoose = require("mongoose");
 
-//conexion con mongo
-var conection_string = 'mongodb://localhost/SweetsTemptations'
-if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD){
-	conection_string = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
-	process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" + 
-	process.env.OPENSHIFT_MONGODB_DB_HOST + ":" +
-	process.env.OPENSHIFT_MONGODB_DB_PORT + "/" + 
-	process.env.OPENSHIFT_APP_NAME ;
-
-
-}
-mongoose.connect( conection_string,{ useMongoClient: true });
 //creacion del modelo json
+if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
+  var mongoServiceName = process.env.DATABASE_SERVICE_NAME.toUpperCase(),
+      mongoHost = process.env[mongoServiceName + '_SERVICE_HOST'],
+      mongoPort = process.env[mongoServiceName + '_SERVICE_PORT'],
+      mongoDatabase = process.env[mongoServiceName + '_DATABASE'],
+      mongoPassword = process.env[mongoServiceName + '_PASSWORD']
+      mongoUser = process.env[mongoServiceName + '_USER'];
+
+  if (mongoHost && mongoPort && mongoDatabase) {
+    mongoURLLabel = mongoURL = 'mongodb://';
+    if (mongoUser && mongoPassword) {
+      mongoURL += mongoUser + ':' + mongoPassword + '@';
+    }
+    // Provide UI label that excludes user id and pw
+    mongoURLLabel += mongoHost + ':' + mongoPort + '/' + mongoDatabase;
+    mongoURL += mongoHost + ':' +  mongoPort + '/' + mongoDatabase;
+
+  }
+}
+
+
+  if (mongoURL == null) return;
+
+  var mongoose = require('mongodb');
+  if (mongodb == null) return;
+
+  mongoose.connect(mongoURL, function(err, conn) {
+    if (err) {
+      callback(err);
+      return;
+    }
+
+    db = conn;
+    dbDetails.databaseName = db.databaseName;
+    dbDetails.url = mongoURLLabel;
+    dbDetails.type = 'MongoDB';
+
+    console.log('Connected to MongoDB at: %s', mongoURL);
+  });
 
 
 
