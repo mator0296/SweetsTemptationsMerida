@@ -29,7 +29,7 @@ if (mongoURL == 'mongodb://localhost/SweetsTemptations' && process.env.DATABASE_
 
 
   var mongoose = require('mongoose');
-
+   console.log(mongoURL)
   mongoose.connect(mongoURL, function(err, conn) {
     if (err) {
       callback(err);
