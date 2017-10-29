@@ -1,6 +1,10 @@
 
+
+ var  mongoURL = process.env.OPENSHIFT_MONGODB_DB_URL || process.env.MONGO_URL || 'mongodb://localhost/SweetsTemptations',
+    mongoURLLabel = "";
+Object.assign=require('object-assign')
 //creacion del modelo json
-if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
+if (mongoURL == 'mongodb://localhost/SweetsTemptations' && process.env.DATABASE_SERVICE_NAME) {
   var mongoServiceName = process.env.DATABASE_SERVICE_NAME.toUpperCase(),
       mongoHost = process.env[mongoServiceName + '_SERVICE_HOST'],
       mongoPort = process.env[mongoServiceName + '_SERVICE_PORT'],
@@ -21,10 +25,9 @@ if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
 }
 
 
-  if (mongoURL == null) return;
 
-  var mongoose = require('mongodb');
-  if (mongodb == null) return;
+
+  var mongoose = require('mongoose');
 
   mongoose.connect(mongoURL, function(err, conn) {
     if (err) {
@@ -32,10 +35,7 @@ if (mongoURL == null && process.env.DATABASE_SERVICE_NAME) {
       return;
     }
 
-    db = conn;
-    dbDetails.databaseName = db.databaseName;
-    dbDetails.url = mongoURLLabel;
-    dbDetails.type = 'MongoDB';
+ 
 
     console.log('Connected to MongoDB at: %s', mongoURL);
   });
