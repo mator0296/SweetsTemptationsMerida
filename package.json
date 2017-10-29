@@ -15,6 +15,7 @@
     "express-formidable": "^1.0.0",
     "express-session": "^1.15.3",
     "formidable": "^1.1.1",
+    "mocha": "^2.4.5",
     "google-auth-library": "^0.10.0",
     "googleapis": "^20.0.1",
     "hashmap": "^2.1.0",
