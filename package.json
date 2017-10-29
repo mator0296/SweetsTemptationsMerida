@@ -29,8 +29,14 @@
     "redis": "^2.8.0",
     "socket.io": "^2.0.3",
     "socket.io-client": "^2.0.3"
+  }, "engine": {
+    "node": "*",
+    "npm": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/mator0296/sweetstemptationsmerida.git"
   },
   "author": "Rojas Lobo Victor <rojasv907@gmail.com>",
-  "license": "ISC",
-  "main": "server.js"
+  "license": "ISC"
 }
