@@ -31,7 +31,7 @@ if (mongoURL == 'mongodb://localhost/SweetsTemptations' && process.env.DATABASE_
 
   mongoose.connect(mongoURL, function(err, conn) {
     if (err) {
-      callback(err);
+      console.log(err);
       return;
     }
 
