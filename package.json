@@ -9,6 +9,9 @@
     "test": "IP=0.0.0.0 PORT=3030 mocha --timeout 5000 tests/*_test.js"
   },
   "dependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^2.0.1",
+    "ejs": "^2.4.1",
     "body-parser": "^1.17.2",
     "cookie-session": "^2.0.0-beta.2",
     "express": "^4.14.0",
@@ -28,9 +31,8 @@
     "passport-facebook": "^2.1.1",
     "passport-google-oauth": "^1.0.0",
     "passport-google-oauth2": "^0.1.6",
-    "redis": "^2.8.0",
-    "socket.io": "^2.0.3",
-    "socket.io-client": "^2.0.3"
+    "morgan": "^1.7.0",
+    "object-assign":"4.1.0"
   }, "engine": {
     "node": "*",
     "npm": "*"
