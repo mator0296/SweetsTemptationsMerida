@@ -13,6 +13,8 @@ if (mongoURL == 'mongodb://localhost/SweetsTemptations' && process.env.DATABASE_
       mongoPassword = process.env[mongoServiceName + '_PASSWORD']
       mongoUser = process.env[mongoServiceName + '_USER'];
 
+
+  mongoURL = ""
   if (mongoHost && mongoPort && mongoDatabase) {
     mongoURLLabel = mongoURL = 'mongodb://';
     if (mongoUser && mongoPassword) {
