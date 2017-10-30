@@ -5,19 +5,16 @@
 
   var mongoose = require('mongoose');
 
- var conection_string = 'mongodb://localhost/SweetsTemptations'
-if(process.env.OPENSHIFT_MONGODB_DB_PASSWORD){
-  conection_string = process.env.OPENSHIFT_MONGODB_DB_USERNAME + ":" +
-  process.env.OPENSHIFT_MONGODB_DB_PASSWORD + "@" + 
-  process.env.OPENSHIFT_MONGODB_DB_HOST + ":" +
-  process.env.OPENSHIFT_MONGODB_DB_PORT + "/" + 
-  process.env.OPENSHIFT_APP_NAME ;
+ var url = '127.0.0.1:27017/' + process.env.OPENSHIFT_APP_NAME;
 
-
+// if OPENSHIFT env variables are present, use the available connection info:
+if (process.env.OPENSHIFT_MONGODB_DB_URL) {
+    url = process.env.OPENSHIFT_MONGODB_DB_URL +
+    process.env.OPENSHIFT_APP_NAME;
 }
-mongoose.connect( conection_string , { useMongoClient: true });
-//creacion del modelo json
 
+//creacion del modelo json
+mongoose.connect(url);
 
 
 var userSchemaJSON = {
